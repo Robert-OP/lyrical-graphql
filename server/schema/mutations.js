@@ -15,14 +15,14 @@ const mutation = new GraphQLObjectType({
         title: { type: GraphQLString }
       },
       resolve(parentValue, { title }) {
-        return (new Song({ title })).save()
+        return new Song({ title }).save();
       }
     },
     addLyricToSong: {
       type: SongType,
       args: {
-        content: { type: GraphQLString },
-        songId: { type: GraphQLID }
+        songId: { type: GraphQLID },
+        content: { type: GraphQLString }
       },
       resolve(parentValue, { content, songId }) {
         return Song.addLyric(songId, content);
